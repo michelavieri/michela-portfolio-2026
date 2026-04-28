@@ -8,6 +8,7 @@ const config: Config = {
         // Core UI
         primary: '#000000',
         secondary: '#717171',
+        border: '#F0F0F0',
 
         // Backgrounds
         background: '#FFFCF9',
