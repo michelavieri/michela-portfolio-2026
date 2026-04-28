@@ -9,7 +9,7 @@ export function Tags({ tags }: TagsProps) {
     return (
         <div className="flex flex-wrap gap-2 mt-4">
             {tags.map((tag) => (
-                <Badge key={tag} className={clsx(colorMap[tag === 'UI/UX Design' ? "pink" : tag === "Web Development" ? "blue" : "purple"], 'p-4')}>
+                <Badge key={tag} className={clsx(colorMap[tag === 'UI/UX Design' ? "pink" : tag === "Web Development" ? "blue" : tag === "Case Study" ? "purple" : "beige"], 'p-4')}>
                     {tag}
                 </Badge>
             ))}

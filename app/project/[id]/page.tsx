@@ -1,0 +1,176 @@
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { projects } from "@/data/projects";
+import ReactMarkdown from "react-markdown";
+import { ProjectTOC } from "@/components/project/ProjectTOC";
+
+function slugify(text: string) {
+    return text
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w-]/g, "");
+}
+
+export default async function ProjectPage({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
+    const { id } = await params;
+
+    const project = projects.find((p) => p.id === id);
+
+    if (!project) return notFound();
+
+    return (
+        <div className="px-6 md:px-16 py-16 md:py-24 mx-auto grid grid-cols-1 md:grid-cols-[160px_1fr] gap-12">
+
+            {/* LEFT: TOC */}
+            <div className="hidden md:block sticky top-24 text-sm text-gray-400 self-start space-y-8">
+                <a
+                    href="/"
+                    className="text-sm text-gray-400 hover:text-black transition inline-block"
+                >
+                    ← Back
+                </a>
+
+                <ProjectTOC sections={project.sections ?? []} />
+            </div>
+
+            {/* RIGHT: CONTENT */}
+            <div className="max-w-3xl mx-auto w-full">
+
+                {/* MOBILE BACK */}
+                <a
+                    href="/"
+                    className="md:hidden text-sm text-gray-400 hover:text-black transition inline-block mb-10"
+                >
+                    ← Back
+                </a>
+
+                {/* HEADER */}
+                <div className="mb-16">
+                    <h1 className="text-3xl md:text-5xl font-medium mb-6">
+                        {project.title}
+                    </h1>
+
+                    <p className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed">
+                        {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2 mt-6">
+                        {project.tags.map((tag) => (
+                            <span
+                                key={tag}
+                                className="text-xs bg-muted px-2 py-1 rounded text-gray-600"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                {/* CONTENT */}
+                {project.sections && (
+                    <div className="space-y-16">
+                        {project.sections.map((section, i) => {
+                            switch (section.type) {
+                                case "text":
+                                    const id = section.title ? slugify(section.title) : null;
+
+                                    return (
+                                        <section key={i}>
+                                            {section.title && (
+                                                <h2
+                                                    id={id ?? undefined}
+                                                    className="text-xl font-semibold mb-4 scroll-mt-24"
+                                                >
+                                                    {section.title}
+                                                </h2>
+                                            )}
+
+                                            <ReactMarkdown
+                                                components={{
+                                                    p: ({ children }) => (
+                                                        <p className="text-gray-700 leading-relaxed mb-4">
+                                                            {children}
+                                                        </p>
+                                                    ),
+                                                    strong: ({ children }) => (
+                                                        <strong className="font-semibold text-gray-800">
+                                                            {children}
+                                                        </strong>
+                                                    ),
+                                                }}
+                                            >
+                                                {section.content}
+                                            </ReactMarkdown>
+                                        </section>
+                                    );
+
+                                case "image":
+                                    return (
+                                        <div key={i} className="flex flex-col items-center w-full gap-4">
+                                            <div className="rounded-lg overflow-hidden border bg-muted w-full">
+                                                <Image
+                                                    src={section.src}
+                                                    alt={section.alt || ""}
+                                                    width={1200}
+                                                    height={800}
+                                                    className="w-full h-auto"
+                                                />
+                                            </div>
+
+                                            {section.caption && (
+                                                <p className="text-xs text-gray-500">
+                                                    {section.caption}
+                                                </p>
+                                            )}
+                                        </div>
+                                    );
+
+                                case "quote":
+                                    return (
+                                        <blockquote
+                                            key={i}
+                                            className="border-l-2 pl-4 italic text-gray-500"
+                                        >
+                                            {section.content}
+                                        </blockquote>
+                                    );
+
+                                case "list":
+                                    return (
+                                        <ul
+                                            key={i}
+                                            className="list-disc pl-5 space-y-2 text-gray-700 my-6"
+                                        >
+                                            {section.items.map((item, idx) => (
+                                                <li key={idx}>
+                                                    <ReactMarkdown
+                                                        components={{
+                                                            p: ({ children }) => <span>{children}</span>,
+                                                            strong: ({ children }) => (
+                                                                <strong className="font-semibold text-gray-800">
+                                                                    {children}
+                                                                </strong>
+                                                            ),
+                                                        }}
+                                                    >
+                                                        {item}
+                                                    </ReactMarkdown>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    );
+
+                                default:
+                                    return null;
+                            }
+                        })}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
