@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import { Menu, X } from 'lucide-react';
+import { Equal, X } from 'lucide-react';
 
 const navItems = [
     { label: 'Intro', id: 'intro' },
@@ -60,7 +60,7 @@ export function Navigation() {
     return (
         <>
             {/* Desktop Sidebar */}
-            <nav className="hidden md:flex flex-col w-[20vw] h-screen sticky top-0 p-10 bg-muted">
+            <nav className="hidden md:flex flex-col w-full h-screen sticky top-0 p-6 lg:p-10 bg-muted">
                 <div className="mb-10 w-full">
                     <Image
                         src="/images/logo.png"
@@ -78,7 +78,7 @@ export function Navigation() {
                             <button
                                 onClick={() => scrollTo(item.id)}
                                 className={clsx(
-                                    'text-left transition-colors font-medium cursor-pointer',
+                                    'text-left transition-colors font-medium cursor-pointer text-sm lg:text-base',
                                     active === item.id
                                         ? 'text-black'
                                         : 'text-gray-400 hover:text-gray-700'
@@ -92,7 +92,7 @@ export function Navigation() {
             </nav>
 
             {/* Mobile Top Bar */}
-            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-muted p-4 flex justify-between items-center">
+            <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background p-4 flex justify-between items-center">
                 <Image
                     src="/images/logo.png"
                     alt="Logo"
@@ -101,13 +101,13 @@ export function Navigation() {
                 />
 
                 <button onClick={() => setOpen(!open)}>
-                    {open ? <X size={22} /> : <Menu size={22} />}
+                    {open ? <X size={22} /> : <Equal size={22} />}
                 </button>
             </div>
 
             {/* Mobile Menu */}
             {open && (
-                <div className="md:hidden fixed inset-0 bg-muted z-40 flex flex-col items-center justify-center space-y-6">
+                <div className="md:hidden fixed inset-0 bg-background z-40 flex flex-col items-center justify-center space-y-6">
                     {navItems.map((item) => (
                         <button
                             key={item.id}
