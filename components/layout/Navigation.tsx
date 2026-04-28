@@ -22,7 +22,12 @@ export function Navigation() {
         const el = document.getElementById(id);
         if (!el) return;
 
-        el.scrollIntoView({ behavior: 'smooth' });
+        const yOffset = -80;
+        const y =
+            el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+
         setOpen(false);
     };
 
