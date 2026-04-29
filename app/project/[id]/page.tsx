@@ -11,6 +11,19 @@ function slugify(text: string) {
         .replace(/[^\w-]/g, "");
 }
 
+function getFigmaEmbedSrc(src: string) {
+    const normalizedSrc = src.replaceAll("&amp;", "&");
+
+    if (
+        normalizedSrc.startsWith("https://www.figma.com/embed") ||
+        normalizedSrc.startsWith("https://embed.figma.com/")
+    ) {
+        return normalizedSrc;
+    }
+
+    return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(normalizedSrc)}`;
+}
+
 export default async function ProjectPage({
     params,
 }: {
@@ -127,6 +140,38 @@ export default async function ProjectPage({
                                     return (
                                         <div key={i} className="flex flex-col items-center w-full gap-4">
                                             <ZoomableImage src={section.src} alt={section.alt} />
+
+                                            {section.caption && (
+                                                <p className="text-xs text-gray-500">
+                                                    {section.caption}
+                                                </p>
+                                            )}
+                                        </div>
+                                    );
+
+                                case "figma":
+                                    return (
+                                        <div key={i} className="flex w-full flex-col gap-3">
+                                            {section.title && (
+                                                <h2
+                                                    id={slugify(section.title)}
+                                                    className="text-xl font-semibold mb-4 scroll-mt-24"
+                                                >
+                                                    {section.title}
+                                                </h2>
+                                            )}
+                                            <div
+                                                className="relative w-full overflow-hidden rounded-lg border bg-muted"
+                                                style={{ height: section.height ?? 560 }}
+                                            >
+                                                <iframe
+                                                    src={getFigmaEmbedSrc(section.src)}
+                                                    title={section.title ?? "Figma embed"}
+                                                    loading="lazy"
+                                                    allowFullScreen
+                                                    className="absolute inset-0 h-full w-full"
+                                                />
+                                            </div>
 
                                             {section.caption && (
                                                 <p className="text-xs text-gray-500">

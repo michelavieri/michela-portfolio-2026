@@ -1,6 +1,7 @@
 import { Project } from '@/lib/types';
 import { semblySections } from './sembly.sections';
 import { wikipediaSections } from './wikipedia.sections';
+import { subwaySections } from './subway.sections';
 
 export const projects: Project[] = [
   {
@@ -21,6 +22,7 @@ export const projects: Project[] = [
     imageSrc: '/images/projects/subway-cover.webp',
     tags: ['UI/UX Design', 'Web Development'],
     minutes: 3,
+    sections: subwaySections,
   },
   {
     id: 'sembly',

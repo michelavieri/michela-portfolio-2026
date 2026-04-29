@@ -11,6 +11,13 @@ export type ProjectSection =
       caption?: string;
     }
   | {
+      type: 'figma';
+      src: string;
+      title?: string;
+      caption?: string;
+      height?: number;
+    }
+  | {
       type: 'quote';
       content: string;
     };

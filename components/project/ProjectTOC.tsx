@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
     sections: any[];
@@ -16,34 +16,45 @@ function slugify(text: string) {
 export function ProjectTOC({ sections }: Props) {
     const [active, setActive] = useState<string>("");
 
-    const titles = sections
-        .filter((s) => s.type === "text" && s.title)
-        .map((s) => ({
-            id: slugify(s.title),
-            title: s.title,
-        }));
+    const titles = useMemo(
+        () =>
+            sections
+                .filter((s) => (s.type === "text" && s.title) || (s.type === "figma" && s.title))
+                .map((s) => ({
+                    id: slugify(s.title),
+                    title: s.title,
+                })),
+        [sections]
+    );
 
     useEffect(() => {
-        const headings = document.querySelectorAll("h2[id]");
+        const headingIds = titles.map((title) => title.id);
+        const headings = headingIds
+            .map((id) => document.getElementById(id))
+            .filter((heading): heading is HTMLElement => Boolean(heading));
 
         const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActive(entry.target.id);
-                    }
-                });
+            () => {
+                const current = headings
+                    .filter((heading) => heading.getBoundingClientRect().top <= 120)
+                    .at(-1);
+
+                setActive(current?.id ?? headings[0]?.id ?? "");
             },
             {
                 root: null,
-                threshold: 0.3,
+                rootMargin: "-100px 0px -70% 0px",
+                threshold: 0,
             }
         );
 
-        headings.forEach((el) => observer.observe(el));
+        headings.forEach((heading) => observer.observe(heading));
+
+        const initial = headings.find((heading) => heading.getBoundingClientRect().top > 0);
+        setActive(initial?.id ?? headings[0]?.id ?? "");
 
         return () => observer.disconnect();
-    }, []);
+    }, [titles]);
 
     return (
         <div className="space-y-4">
