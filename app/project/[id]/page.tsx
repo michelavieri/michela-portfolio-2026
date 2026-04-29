@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { projects } from "@/data/projects";
+import { projects } from "@/data/projects/projects";
 import ReactMarkdown from "react-markdown";
 import { ProjectTOC } from "@/components/project/ProjectTOC";
+import { ZoomableImage } from "@/components/project/ZoomableImage";
 
 function slugify(text: string) {
     return text
@@ -101,6 +101,21 @@ export default async function ProjectPage({
                                                             {children}
                                                         </strong>
                                                     ),
+                                                    ol: ({ children }) => (
+                                                        <ol className="list-decimal pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500">
+                                                            {children}
+                                                        </ol>
+                                                    ),
+                                                    ul: ({ children }) => (
+                                                        <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500">
+                                                            {children}
+                                                        </ul>
+                                                    ),
+                                                    li: ({ children }) => (
+                                                        <li className="pl-1 leading-relaxed text-gray-700 [&>p]:mb-2 [&>p:last-child]:mb-0 [&>ol]:mt-2 [&>ul]:mt-2">
+                                                            {children}
+                                                        </li>
+                                                    ),
                                                 }}
                                             >
                                                 {section.content}
@@ -111,15 +126,7 @@ export default async function ProjectPage({
                                 case "image":
                                     return (
                                         <div key={i} className="flex flex-col items-center w-full gap-4">
-                                            <div className="rounded-lg overflow-hidden border bg-muted w-full">
-                                                <Image
-                                                    src={section.src}
-                                                    alt={section.alt || ""}
-                                                    width={1200}
-                                                    height={800}
-                                                    className="w-full h-auto"
-                                                />
-                                            </div>
+                                            <ZoomableImage src={section.src} alt={section.alt} />
 
                                             {section.caption && (
                                                 <p className="text-xs text-gray-500">
@@ -137,31 +144,6 @@ export default async function ProjectPage({
                                         >
                                             {section.content}
                                         </blockquote>
-                                    );
-
-                                case "list":
-                                    return (
-                                        <ul
-                                            key={i}
-                                            className="list-disc pl-5 space-y-2 text-gray-700 my-6"
-                                        >
-                                            {section.items.map((item, idx) => (
-                                                <li key={idx}>
-                                                    <ReactMarkdown
-                                                        components={{
-                                                            p: ({ children }) => <span>{children}</span>,
-                                                            strong: ({ children }) => (
-                                                                <strong className="font-semibold text-gray-800">
-                                                                    {children}
-                                                                </strong>
-                                                            ),
-                                                        }}
-                                                    >
-                                                        {item}
-                                                    </ReactMarkdown>
-                                                </li>
-                                            ))}
-                                        </ul>
                                     );
 
                                 default:

@@ -46,7 +46,7 @@ export function ProjectTOC({ sections }: Props) {
     }, []);
 
     return (
-        <div className="space-y-3">
+        <div className="space-y-4">
             {titles.map((item) => (
                 <button
                     key={item.id}
@@ -60,8 +60,8 @@ export function ProjectTOC({ sections }: Props) {
                         });
                     }}
                     className={`block text-left transition-colors ${active === item.id
-                            ? "text-black font-medium"
-                            : "text-gray-400 hover:text-gray-700"
+                        ? "text-black font-medium"
+                        : "text-gray-400 hover:text-gray-700"
                         }`}
                 >
                     {item.title}

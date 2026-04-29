@@ -1,7 +1,7 @@
 'use client';
 import { ProjectCard } from '@/components/cards/ProjectCard';
 import { SectionLabel } from '@/components/common/SectionLabel';
-import { projects } from '@/data/projects';
+import { projects } from '@/data/projects/projects';
 export function WorkSection() {
     return (
         <section id="work" className="px-0 md:px-12 pb-12">
