@@ -38,6 +38,11 @@ export default async function ProjectPage({
 
     if (!project) return notFound();
 
+    const currentIndex = projects.findIndex((p) => p.id === id);
+
+    const nextProject =
+        projects[(currentIndex + 1) % projects.length];
+
     return (
         <div className="w-full">
 
@@ -222,6 +227,50 @@ export default async function ProjectPage({
                                     return null;
                             }
                         })}
+
+                        {/* NEXT PROJECT SECTION */}
+                        <div className="mt-24 border-t pt-16">
+
+                            <p className="text-xs uppercase tracking-widest text-gray-400 mb-6">
+                                Check out other projects
+                            </p>
+
+                            <a
+                                href={`/project/${nextProject.id}`}
+                                className="group block"
+                            >
+                                <div className="grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-6 items-center group">
+
+                                    {/* THUMBNAIL */}
+                                    <div className="relative w-full aspect-[4/3] overflow-hidden rounded-md bg-muted">
+                                        {nextProject.heroImage && (
+                                            <Image
+                                                src={nextProject.imageSrc}
+                                                alt={nextProject.title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition duration-300"
+                                            />
+                                        )}
+                                    </div>
+
+                                    {/* TEXT */}
+                                    <div>
+                                        <p className="text-lg font-medium text-gray-900 group-hover:text-gray-500 transition">
+                                            {nextProject.title}
+                                        </p>
+
+                                        <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                                            {nextProject.description}
+                                        </p>
+
+                                        {/* subtle arrow hint */}
+                                        <div className="mt-4 text-sm text-gray-400 group-hover:text-gray-600 transition">
+                                            → View project
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
