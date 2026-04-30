@@ -3,6 +3,7 @@ import { projects } from "@/data/projects/projects";
 import ReactMarkdown from "react-markdown";
 import { ProjectTOC } from "@/components/project/ProjectTOC";
 import { ZoomableImage } from "@/components/project/ZoomableImage";
+import Image from "next/image";
 
 function slugify(text: string) {
     return text
@@ -21,7 +22,9 @@ function getFigmaEmbedSrc(src: string) {
         return normalizedSrc;
     }
 
-    return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(normalizedSrc)}`;
+    return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(
+        normalizedSrc
+    )}`;
 }
 
 export default async function ProjectPage({
@@ -36,60 +39,78 @@ export default async function ProjectPage({
     if (!project) return notFound();
 
     return (
-        <div className="px-6 md:px-16 py-16 md:py-24 mx-auto grid grid-cols-1 md:grid-cols-[160px_1fr] gap-12">
+        <div className="w-full">
 
-            {/* LEFT: TOC */}
-            <div className="hidden md:block sticky top-24 text-sm text-gray-400 self-start space-y-8">
-                <a
-                    href="/"
-                    className="text-sm text-gray-400 hover:text-black transition inline-block"
-                >
-                    ← Back
-                </a>
-
-                <ProjectTOC sections={project.sections ?? []} />
+            {/* TOP BANNER */}
+            <div className="w-full">
+                <div className="relative w-full aspect-[6/1] max-h-[420px] overflow-hidden">
+                    <Image
+                        src={project.heroImage}
+                        alt={project.title}
+                        fill
+                        priority
+                        className="object-cover"
+                    />
+                </div>
             </div>
 
-            {/* RIGHT: CONTENT */}
-            <div className="max-w-3xl mx-auto w-full">
+            {/* GRID LAYOUT (TOC + CONTENT) */}
+            <div className="px-6 md:px-16 py-16 md:py-24 mx-auto grid grid-cols-1 md:grid-cols-[160px_1fr] gap-12">
 
-                {/* MOBILE BACK */}
-                <a
-                    href="/"
-                    className="md:hidden text-sm text-gray-400 hover:text-black transition inline-block mb-10"
-                >
-                    ← Back
-                </a>
+                {/* LEFT: TOC */}
+                <div className="hidden md:block sticky top-24 text-sm text-gray-500 self-start space-y-6">
+                    <a
+                        href="/"
+                        className="text-sm text-gray-400 hover:text-black transition inline-block"
+                    >
+                        ← Back
+                    </a>
 
-                {/* HEADER */}
-                <div className="mb-16">
-                    <h1 className="text-3xl md:text-5xl font-medium mb-6">
-                        {project.title}
-                    </h1>
-
-                    <p className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed">
-                        {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mt-6">
-                        {project.tags.map((tag) => (
-                            <span
-                                key={tag}
-                                className="text-xs bg-muted px-2 py-1 rounded text-gray-600"
-                            >
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
+                    <ProjectTOC sections={project.sections ?? []} />
                 </div>
 
-                {/* CONTENT */}
-                {project.sections && (
+                {/* RIGHT: CONTENT */}
+                <div className="max-w-3xl mx-auto w-full">
+
+                    {/* MOBILE BACK */}
+                    <a
+                        href="/"
+                        className="md:hidden text-sm text-gray-400 hover:text-black transition inline-block mb-10"
+                    >
+                        ← Back
+                    </a>
+
+                    {/* TITLE */}
+                    <div className="mb-12">
+                        <h1 className="text-3xl md:text-5xl font-medium mb-4">
+                            {project.title}
+                        </h1>
+
+                        <p className="text-gray-500 max-w-2xl leading-relaxed">
+                            {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 mt-6">
+                            {project.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="text-xs bg-muted px-2 py-1 rounded text-gray-600"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* CONTENT */}
                     <div className="space-y-16">
-                        {project.sections.map((section, i) => {
+                        {project.sections?.map((section, i) => {
                             switch (section.type) {
-                                case "text":
-                                    const id = section.title ? slugify(section.title) : null;
+
+                                case "text": {
+                                    const id = section.title
+                                        ? slugify(section.title)
+                                        : null;
 
                                     return (
                                         <section key={i}>
@@ -124,7 +145,7 @@ export default async function ProjectPage({
                                                             href={href}
                                                             target="_blank"
                                                             rel="noreferrer"
-                                                            className="font-medium text-gray-900 underline underline-offset-4 transition hover:text-gray-500"
+                                                            className="font-medium text-gray-900 underline underline-offset-4 hover:text-gray-500 transition"
                                                         >
                                                             {children}
                                                         </a>
@@ -134,55 +155,15 @@ export default async function ProjectPage({
                                                             {children}
                                                         </blockquote>
                                                     ),
-                                                    table: ({ children }) => (
-                                                        <div className="mb-6 overflow-x-auto rounded-lg border">
-                                                            <table className="w-full min-w-[520px] text-left text-sm text-gray-700">
-                                                                {children}
-                                                            </table>
-                                                        </div>
-                                                    ),
-                                                    thead: ({ children }) => (
-                                                        <thead className="bg-muted text-gray-900">
-                                                            {children}
-                                                        </thead>
-                                                    ),
-                                                    th: ({ children }) => (
-                                                        <th className="px-4 py-3 font-semibold">
-                                                            {children}
-                                                        </th>
-                                                    ),
-                                                    td: ({ children }) => (
-                                                        <td className="border-t px-4 py-3">
-                                                            {children}
-                                                        </td>
-                                                    ),
-                                                    code: ({ children }) => (
-                                                        <code className="rounded bg-muted px-1 py-0.5 text-sm text-gray-800">
-                                                            {children}
-                                                        </code>
-                                                    ),
-                                                    pre: ({ children }) => (
-                                                        <pre className="mb-6 overflow-x-auto rounded-lg border bg-muted p-4 text-sm leading-relaxed text-gray-800">
-                                                            {children}
-                                                        </pre>
-                                                    ),
-                                                    ol: ({ children, ...props }) => (
-                                                        <ol
-                                                            {...props}
-                                                            className="list-decimal pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500"
-                                                        >
-                                                            {children}
-                                                        </ol>
-                                                    ),
                                                     ul: ({ children }) => (
-                                                        <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500">
+                                                        <ul className="list-disc pl-6 mb-4 text-gray-700 space-y-2">
                                                             {children}
                                                         </ul>
                                                     ),
-                                                    li: ({ children }) => (
-                                                        <li className="pl-1 leading-relaxed text-gray-700 [&>p]:mb-2 [&>p:last-child]:mb-0 [&>ol]:mt-2 [&>ul]:mt-2">
+                                                    ol: ({ children }) => (
+                                                        <ol className="list-decimal pl-6 mb-4 text-gray-700 space-y-2">
                                                             {children}
-                                                        </li>
+                                                        </ol>
                                                     ),
                                                 }}
                                             >
@@ -190,23 +171,24 @@ export default async function ProjectPage({
                                             </ReactMarkdown>
                                         </section>
                                     );
+                                }
 
                                 case "image":
                                     return (
-                                        <div key={i} className="flex flex-col items-center w-full gap-4">
-                                            <ZoomableImage src={section.src} alt={section.alt} />
-
-                                            {section.caption && (
-                                                <p className="text-xs text-gray-500">
-                                                    {section.caption}
-                                                </p>
-                                            )}
+                                        <div
+                                            key={i}
+                                            className="flex flex-col items-center gap-4"
+                                        >
+                                            <ZoomableImage
+                                                src={section.src}
+                                                alt={section.alt}
+                                            />
                                         </div>
                                     );
 
                                 case "figma":
                                     return (
-                                        <div key={i} className="flex w-full flex-col gap-3">
+                                        <div key={i} className="flex flex-col gap-3">
                                             {section.title && (
                                                 <h2
                                                     id={slugify(section.title)}
@@ -215,35 +197,25 @@ export default async function ProjectPage({
                                                     {section.title}
                                                 </h2>
                                             )}
+
                                             <div
                                                 className="relative w-full overflow-hidden rounded-lg border bg-muted"
-                                                style={{ height: section.height ?? 560 }}
+                                                style={{
+                                                    height:
+                                                        section.height ?? 560,
+                                                }}
                                             >
                                                 <iframe
-                                                    src={getFigmaEmbedSrc(section.src)}
+                                                    src={getFigmaEmbedSrc(
+                                                        section.src
+                                                    )}
                                                     title={section.title ?? "Figma embed"}
                                                     loading="lazy"
                                                     allowFullScreen
-                                                    className="absolute inset-0 h-full w-full"
+                                                    className="absolute inset-0 w-full h-full"
                                                 />
                                             </div>
-
-                                            {section.caption && (
-                                                <p className="text-xs text-gray-500">
-                                                    {section.caption}
-                                                </p>
-                                            )}
                                         </div>
-                                    );
-
-                                case "quote":
-                                    return (
-                                        <blockquote
-                                            key={i}
-                                            className="border-l-2 pl-4 italic text-gray-500"
-                                        >
-                                            "{section.content}"
-                                        </blockquote>
                                     );
 
                                 default:
@@ -251,7 +223,7 @@ export default async function ProjectPage({
                             }
                         })}
                     </div>
-                )}
+                </div>
             </div>
         </div>
     );

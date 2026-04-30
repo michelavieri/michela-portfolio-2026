@@ -31,4 +31,5 @@ export type Project = {
   link?: string;
   minutes: number;
   sections?: ProjectSection[];
+  heroImage: string;
 };

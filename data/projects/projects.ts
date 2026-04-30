@@ -16,6 +16,7 @@ export const projects: Project[] = [
     link: 'vierifleur.com',
     minutes: 10,
     sections: vieriFleurSections,
+    heroImage: '/images/projects/vieri-banner.jpg',
   },
   {
     id: 'sembly',
@@ -27,6 +28,7 @@ export const projects: Project[] = [
     link: 'sembly.com',
     minutes: 5,
     sections: semblySections,
+    heroImage: '/images/projects/sembly-banner.jpg',
   },
   {
     id: 'wikipedia-talk',
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     tags: ['Case Study'],
     minutes: 10,
     sections: wikipediaSections,
+    heroImage: '/images/projects/wikipedia-banner.jpg',
   },
   {
     id: 'subway-catering',
@@ -46,6 +49,7 @@ export const projects: Project[] = [
     tags: ['UI/UX Design', 'Web Development'],
     minutes: 3,
     sections: subwaySections,
+    heroImage: '/images/projects/subway-banner.png',
   },
   {
     id: 'others',
@@ -56,5 +60,6 @@ export const projects: Project[] = [
     tags: ['UI/UX Design', 'Web Development', 'Case Study'],
     minutes: 2,
     sections: othersSections,
+    heroImage: '/images/projects/others-banner.png',
   },
 ];
