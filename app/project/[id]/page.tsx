@@ -119,6 +119,16 @@ export default async function ProjectPage({
                                                             {children}
                                                         </strong>
                                                     ),
+                                                    a: ({ children, href }) => (
+                                                        <a
+                                                            href={href}
+                                                            target="_blank"
+                                                            rel="noreferrer"
+                                                            className="font-medium text-gray-900 underline underline-offset-4 transition hover:text-gray-500"
+                                                        >
+                                                            {children}
+                                                        </a>
+                                                    ),
                                                     blockquote: ({ children }) => (
                                                         <blockquote className="border-l-2 border-gray-200 pl-4 italic text-gray-500 mb-4">
                                                             {children}

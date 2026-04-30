@@ -3,6 +3,7 @@ import { semblySections } from './sembly.sections';
 import { wikipediaSections } from './wikipedia.sections';
 import { subwaySections } from './subway.sections';
 import { vieriFleurSections } from './vieri-fleur.sections';
+import { othersSections } from './others.sections';
 
 export const projects: Project[] = [
   {
@@ -45,5 +46,15 @@ export const projects: Project[] = [
     tags: ['UI/UX Design', 'Web Development'],
     minutes: 3,
     sections: subwaySections,
+  },
+  {
+    id: 'others',
+    title: 'Other Client Works',
+    description:
+      'A selection of client work and product explorations, showcasing range across industries, platforms, and problem types.',
+    imageSrc: '/images/projects/others-cover.webp',
+    tags: ['UI/UX Design', 'Web Development', 'Case Study'],
+    minutes: 2,
+    sections: othersSections,
   },
 ];
