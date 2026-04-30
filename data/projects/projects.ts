@@ -2,27 +2,19 @@ import { Project } from '@/lib/types';
 import { semblySections } from './sembly.sections';
 import { wikipediaSections } from './wikipedia.sections';
 import { subwaySections } from './subway.sections';
+import { vieriFleurSections } from './vieri-fleur.sections';
 
 export const projects: Project[] = [
   {
     id: 'vieri-fleur',
-    title: 'Vieri Fleur Custom Order Design Solution',
+    title: 'Designing a Structured Ordering Flow for a Bespoke Floristry',
     description:
-      'Custom ordering flow redesign for a luxury florist. Eliminated consultation debt and improved conversion through guided brief building.',
-    imageSrc: '/images/projects/vieri-fleur.jpg',
+      'Custom ordering flow redesign for Vieri Fleur. Eliminated consultation debt and improved conversion through guided brief building.',
+    imageSrc: '/images/projects/vieri-cover.webp',
     tags: ['UI/UX Design', 'Web Development'],
     link: 'vierifleur.com',
-    minutes: 3,
-  },
-  {
-    id: 'subway-catering',
-    title: 'Subway Catering',
-    description:
-      'B2B ordering platform enabling bulk catering orders with heavy customization, kitchen integration, and real-time coordination.',
-    imageSrc: '/images/projects/subway-cover.webp',
-    tags: ['UI/UX Design', 'Web Development'],
-    minutes: 3,
-    sections: subwaySections,
+    minutes: 10,
+    sections: vieriFleurSections,
   },
   {
     id: 'sembly',
@@ -43,5 +35,15 @@ export const projects: Project[] = [
     tags: ['Case Study'],
     minutes: 10,
     sections: wikipediaSections,
+  },
+  {
+    id: 'subway-catering',
+    title: 'Subway Catering',
+    description:
+      'B2B ordering platform enabling bulk catering orders with heavy customization, kitchen integration, and real-time coordination.',
+    imageSrc: '/images/projects/subway-cover.webp',
+    tags: ['UI/UX Design', 'Web Development'],
+    minutes: 3,
+    sections: subwaySections,
   },
 ];

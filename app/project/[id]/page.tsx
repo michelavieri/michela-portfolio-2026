@@ -109,13 +109,58 @@ export default async function ProjectPage({
                                                             {children}
                                                         </p>
                                                     ),
+                                                    h3: ({ children }) => (
+                                                        <h3 className="text-base font-semibold text-gray-900 mt-8 mb-3">
+                                                            {children}
+                                                        </h3>
+                                                    ),
                                                     strong: ({ children }) => (
                                                         <strong className="font-semibold text-gray-800">
                                                             {children}
                                                         </strong>
                                                     ),
-                                                    ol: ({ children }) => (
-                                                        <ol className="list-decimal pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500">
+                                                    blockquote: ({ children }) => (
+                                                        <blockquote className="border-l-2 border-gray-200 pl-4 italic text-gray-500 mb-4">
+                                                            {children}
+                                                        </blockquote>
+                                                    ),
+                                                    table: ({ children }) => (
+                                                        <div className="mb-6 overflow-x-auto rounded-lg border">
+                                                            <table className="w-full min-w-[520px] text-left text-sm text-gray-700">
+                                                                {children}
+                                                            </table>
+                                                        </div>
+                                                    ),
+                                                    thead: ({ children }) => (
+                                                        <thead className="bg-muted text-gray-900">
+                                                            {children}
+                                                        </thead>
+                                                    ),
+                                                    th: ({ children }) => (
+                                                        <th className="px-4 py-3 font-semibold">
+                                                            {children}
+                                                        </th>
+                                                    ),
+                                                    td: ({ children }) => (
+                                                        <td className="border-t px-4 py-3">
+                                                            {children}
+                                                        </td>
+                                                    ),
+                                                    code: ({ children }) => (
+                                                        <code className="rounded bg-muted px-1 py-0.5 text-sm text-gray-800">
+                                                            {children}
+                                                        </code>
+                                                    ),
+                                                    pre: ({ children }) => (
+                                                        <pre className="mb-6 overflow-x-auto rounded-lg border bg-muted p-4 text-sm leading-relaxed text-gray-800">
+                                                            {children}
+                                                        </pre>
+                                                    ),
+                                                    ol: ({ children, ...props }) => (
+                                                        <ol
+                                                            {...props}
+                                                            className="list-decimal pl-6 mb-4 text-gray-700 space-y-2 marker:text-gray-500"
+                                                        >
                                                             {children}
                                                         </ol>
                                                     ),
@@ -187,7 +232,7 @@ export default async function ProjectPage({
                                             key={i}
                                             className="border-l-2 pl-4 italic text-gray-500"
                                         >
-                                            {section.content}
+                                            "{section.content}"
                                         </blockquote>
                                     );
 
