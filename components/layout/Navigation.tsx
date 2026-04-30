@@ -22,7 +22,12 @@ export function Navigation() {
         const el = document.getElementById(id);
         if (!el) return;
 
-        el.scrollIntoView({ behavior: 'smooth' });
+        const yOffset = -80;
+        const y =
+            el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+
         setOpen(false);
     };
 
@@ -63,7 +68,7 @@ export function Navigation() {
             <nav className="hidden md:flex flex-col w-full h-screen sticky top-0 p-6 lg:p-10 bg-muted">
                 <div className="mb-10 w-full">
                     <Image
-                        src="/images/logo.png"
+                        src="/images/logo.webp"
                         alt="Logo"
                         width={216}
                         height={45}
@@ -94,7 +99,7 @@ export function Navigation() {
             {/* Mobile Top Bar */}
             <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-background p-4 flex justify-between items-center">
                 <Image
-                    src="/images/logo.png"
+                    src="/images/logo.webp"
                     alt="Logo"
                     width={100}
                     height={32}

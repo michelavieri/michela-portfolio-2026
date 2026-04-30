@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export function HeroSection() {
     return (
-        <div className="min-h-screen px-0 md:px-16 py-16 md:py-24 relative w-full">
+        <div className="min-h-screen px-0 md:px-16 py-16 md:pt-32 md:pb-20 relative w-full">
 
             {/* Top right label */}
-            <div className="absolute hidden md:flex md:top-8 md:right-8 text-xs lg:text-sm text-secondary">
+            <div className="absolute hidden md:flex md:top-8 md:right-8 text-xs lg:text-sm text-muted-foreground">
                 Product Designer & Frontend Engineer
             </div>
 
