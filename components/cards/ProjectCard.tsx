@@ -34,34 +34,39 @@ export function ProjectCard({
                 whileInView="visible"
                 viewport={{ margin: '-100px' }}
                 transition={{ delay: index * 0.1 }}
-                className="group flex flex-row gap-8 md:gap-12 items-start md:items-center border border-border rounded-lg overflow-hidden cursor-pointer transition-all hover:border-gray-300 hover:bg-muted/50"
+                className="group flex flex-col md:flex-row items-stretch gap-2 md:gap-0 border border-border rounded-lg overflow-hidden cursor-pointer transition-all hover:border-gray-300 hover:bg-muted/50"
             >
-                {/* Image */}
-                <div className="w-full h-full relative overflow-hidden bg-gray-100 md:w-[40%]">
+                {/* IMAGE */}
+                <div className="relative w-full md:w-[40%] aspect-[4/3] bg-gray-100 overflow-hidden">
                     <Image
                         src={imageSrc}
                         alt={title}
-                        width={374}
-                        height={282}
-                        className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                        fill
+                        className="object-contain"
                         priority={index < 2}
                     />
                 </div>
-                {/* Content */}
-                <div className="w-full md:w-[60%]">
+
+                {/* CONTENT */}
+                <div className="w-full md:w-[60%] p-4 md:p-6">
                     <Tags tags={tags} />
-                    <h3 className="text-md md:text-xl font-medium mt-4 mb-1">{title}</h3>
+
+                    <h3 className="text-md md:text-xl font-medium mt-4 mb-1">
+                        {title}
+                    </h3>
+
                     <p className="text-xs md:text-sm text-gray-500 leading-relaxed mb-4">
                         {description}
                     </p>
 
-                    <div className='flex flex-row gap-4 mt-6 items-center'>
-                        <div className="flex flex-row gap-4 mt-6 items-center">
-                            <Button className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary">
-                                Read <ArrowRight size={12} />
-                            </Button>
-                            <p className='text-gray-300 text-xs italic'>({minutes} mins read)</p>
-                        </div>
+                    <div className="flex flex-row gap-4 mt-6 items-center">
+                        <Button className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary">
+                            Read <ArrowRight size={12} />
+                        </Button>
+
+                        <p className="text-gray-400 text-xs italic">
+                            ({minutes} mins read)
+                        </p>
                     </div>
                 </div>
             </motion.div>
