@@ -1,3 +1,5 @@
+import type { LucideIcon } from 'lucide-react';
+
 export type ProjectSection =
   | {
       type: 'text';
@@ -32,4 +34,14 @@ export type Project = {
   minutes: number;
   sections?: ProjectSection[];
   heroImage: string;
+};
+
+export type Experience = {
+  company: string;
+  role: string;
+  period: string;
+  website?: string;
+  description?: string;
+  highlights?: string[];
+  icon: LucideIcon;
 };
