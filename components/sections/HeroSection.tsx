@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function HeroSection() {
     return (
-        <div className="min-h-screen px-0 md:px-16 py-16 md:pt-32 md:pb-20 relative w-full">
+        <div className="min-h-screen px-0 md:px-16 py-16 md:pt-32 md:pb-20 relative w-full flex flex-col justify-center">
 
             {/* Top right label */}
             <div className="absolute hidden md:flex md:top-8 md:right-8 text-xs lg:text-sm text-muted-foreground">
@@ -10,8 +10,8 @@ export function HeroSection() {
             </div>
 
             {/* Main hero text */}
-            <div className="mt-24 w-full">
-                <h1 className="max-w-3xl text-[clamp(2.4rem,5vw,4.5rem)] font-medium leading-tight text-primary">
+            <div className="w-full">
+                <h1 className="max-w-3xl lg:max-w-4xl 2xl:max-w-6xl text-[clamp(2.4rem,6vw,6rem)] font-medium leading-tight text-primary">
                     Hi, I design & build web products that feel effortless
                 </h1>
 
