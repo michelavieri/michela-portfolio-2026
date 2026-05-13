@@ -27,7 +27,7 @@ export function ResumeSection() {
           </div>
 
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-2 md:gap-8 sm:flex-row sm:items-center">
               <div className="min-w-0">
                 <p className="text-sm font-semibold text-foreground">Michela Vieri's Resume</p>
                 <p className="text-xs text-muted-foreground mt-1">PDF · 115 KB</p>
