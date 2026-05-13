@@ -9,7 +9,7 @@ export function ExperiencesSection() {
         <div className="px-0 md:px-12 py-12">
             <SectionLabel label="Experience" />
 
-            <div>
+            <div className="max-w-4xl">
                 {experiences.map((experience, index) => (
                     <ExperienceCard
                         key={experience.company}
