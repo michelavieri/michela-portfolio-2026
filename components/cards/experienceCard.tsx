@@ -49,14 +49,15 @@ export function ExperienceCard({
                             {company} — {role}
                         </h3>
 
-                        <div className="mt-1 flex items-center gap-2 text-sm">
+                        <div className="mt-2 md:mt-1 flex md:gap-2 text-sm flex-col md:flex-row md:items-center">
 
                             <p className="text-sm whitespace-nowrap">
                                 {period}
                             </p>
                             {website && (
                                 <>
-                                    <span>·</span>
+                                    <span className='hidden md:flex'>·</span>
+                                    <span className="flex items-center gap-1">
                                     <a
                                         href={`https://${website}`}
                                         target="_blank"
@@ -65,7 +66,7 @@ export function ExperienceCard({
                                         {website}
                                     </a>
                                     <ExternalLink size={12}
-                                        className="hover:text-foreground transition-colors text-muted-foreground" />
+                                        className="hover:text-foreground transition-colors text-muted-foreground" /></span>
                                 </>
                             )}
 

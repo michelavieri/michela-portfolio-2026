@@ -48,7 +48,7 @@ export function ProjectCard({
                 </div>
 
                 {/* CONTENT */}
-                <div className="w-full md:w-[60%] p-4 md:p-6">
+                <div className="w-full md:w-[60%] p-4 md:p-6 md:flex md:flex-col md:justify-center">
                     <Tags tags={tags} />
 
                     <h3 className="text-md md:text-xl font-medium mt-4 mb-1">

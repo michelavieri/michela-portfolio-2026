@@ -8,7 +8,7 @@ import { fadeInUp } from '@/lib/animations';
 
 export function ResumeSection() {
   return (
-    <section id="resume" className="px-0 md:px-12 pb-12">
+    <section id="resume" className="px-0 md:px-12 pt-12 pb-24">
       <div className="w-full">
         <SectionLabel label="Resume" />
 
@@ -35,7 +35,7 @@ export function ResumeSection() {
 
               <div className="flex-shrink-0">
                 <Button className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary" asChild size="sm" variant="default">
-                  <a href="/Michela Vieri's Resume.pdf" download="Michela Vieri's Resume.pdf" className="inline-flex items-center gap-1">
+                  <a href="/Michela Vieri's Resume.pdf" download="Michela Vieri's Resume.pdf" className="inline-flex items-center gap-2">
                     Download
                     <Download size={14} />
                   </a>
