@@ -5,7 +5,7 @@ export const experiences: Experience[] = [
   {
     company: 'Freelance',
     role: 'Designer, Engineer, Founder',
-    period: '2025 - 2026',
+    period: 'May 2025 - Present',
     website: 'blankdesignsolutions.com',
     highlights: [
       'Designing and building conversion-focused digital experiences for regional SMEs across e-commerce, F&B, beauty, and professional services',
@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
   {
     company: 'Sembly',
     role: 'Product Designer, Frontend Engineer',
-    period: '2023 - 2025',
+    period: 'May 2023 - May 2025',
     website: 'sembly.com',
     highlights: [
       'Designed end-to-end collaborative workflows, including a consensus summary feature focused on balancing transparency, anonymity, and trust in team decision-making',
@@ -33,7 +33,7 @@ export const experiences: Experience[] = [
   {
     company: 'SEA Labs',
     role: 'Frontend Engineer Intern',
-    period: 'Jan - Aug 2022',
+    period: 'Jan 2022 - Aug 2022',
     website: 'sea.com',
     highlights: [
       'Built and shipped 9 React applications during early product development of Sea Cloud infrastructure platform; developed 60+ reusable UI components and component library patterns adopted across multiple internal tools',
@@ -46,7 +46,7 @@ export const experiences: Experience[] = [
   {
     company: 'Shopee Singapore',
     role: 'UI/UX Designer Intern',
-    period: 'May - Aug 2021',
+    period: 'May 2021 - Aug 2021',
     website: 'shopee.com',
     highlights: [
       'Analyzed 5+ competitor food delivery platforms to identify feature gaps and UX patterns; conducted competitive analysis on group order feature and delivered findings to senior stakeholders to inform product roadmap decisions',
@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
   {
     company: 'Dateideas',
     role: 'Design Engineer Intern',
-    period: 'May - Aug 2021',
+    period: 'May 2021 - Aug 2021',
     highlights: [
       'Led end-to-end design and implementation of React Native features for a Singapore-based couples activity booking platform as the sole UI/UX designer',
       'Conducted user interviews and usability testing to uncover friction points and inform feature decisions',
