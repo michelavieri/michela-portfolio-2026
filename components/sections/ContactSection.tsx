@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export function ContactSection() {
   return (
-    <section id="contact" className="relative overflow-hidden w-screen -mx-6 lg:-mx-12 px-6 lg:px-12 pb-12 pt-16 bg-muted-foreground/10">
+    <section id="contact" className="relative overflow-hidden w-full mb-12 rounded-xl px-6 lg:px-12 pb-12 pt-16 bg-muted-foreground/10">
       <div className="w-full max-w-full">
         <div className="-mt-4 min-w-0 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center">
           <div className="flex items-center justify-center lg:order-last w-full min-w-0">
