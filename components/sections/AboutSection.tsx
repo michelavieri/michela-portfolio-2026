@@ -7,12 +7,8 @@ const stats = [
         label: "Completed projects, freelance work, and partnerships",
     },
     {
-        value: "3",
+        value: "3+",
         label: "Years of full-time work experience",
-    },
-    {
-        value: "3",
-        label: "Years of internship experience",
     },
 ];
 
@@ -69,6 +65,7 @@ export function AboutSection() {
                         width={400}
                         height={300}
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 224px, (max-width: 1536px) 320px, 400px"
+                        loading="eager"
                         className="w-full rounded-lg object-cover"
                     />
                 </div>

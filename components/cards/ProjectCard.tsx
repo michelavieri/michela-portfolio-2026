@@ -42,8 +42,8 @@ export function ProjectCard({
                         src={imageSrc}
                         alt={title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 40vw"
                         className="object-contain"
-                        priority={index < 2}
                     />
                 </div>
 
