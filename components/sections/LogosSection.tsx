@@ -43,11 +43,11 @@ export function LogosSection() {
                     <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
                     <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
 
-                    <div className="flex w-max animate-logo-marquee items-center gap-12 hover:[animation-play-state:paused]">
+                    <div className="flex w-max animate-logo-marquee items-center gap-0 md:gap-8 hover:[animation-play-state:paused]">
                         {workMarqueeLogos.map((logo, index) => (
                             <div
                                 key={`${logo.alt}-${index}`}
-                                className="flex h-16 w-52 shrink-0 items-center justify-center"
+                                className="flex h-16 w-44 shrink-0 items-center justify-center"
                             >
                                 <Image
                                     src={logo.src}
@@ -66,7 +66,7 @@ export function LogosSection() {
                     <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-background to-transparent" />
                     <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-background to-transparent" />
 
-                    <div className="flex w-max animate-logo-marquee items-center gap-16 hover:[animation-play-state:paused]">
+                    <div className="flex w-max animate-logo-marquee items-center gap-8 md:gap-16 hover:[animation-play-state:paused]">
                         {clientMarqueeLogos.map((logo, index) => (
                             <div
                                 key={`${logo.alt}-${index}`}

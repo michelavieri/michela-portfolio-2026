@@ -105,7 +105,7 @@ html {
 
 @layer utilities {
   .animate-logo-marquee {
-    animation: logo-marquee 32s linear infinite;
+    animation: logo-marquee 2s linear infinite;
   }
 
   .work-logos-static {
