@@ -6,9 +6,9 @@ export default function MainLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="grid md:grid-cols-[20vw_1fr] min-h-screen">
+        <div className="grid min-h-screen md:grid-cols-[20vw_minmax(0,1fr)]">
             <Navigation />
-            <main>{children}</main>
+            <main className="min-w-0">{children}</main>
         </div>
     );
 }

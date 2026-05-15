@@ -59,6 +59,15 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 :root {
   --background: #fffcf9;
   --foreground: oklch(0.145 0 0);
@@ -92,6 +101,30 @@ html {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+@layer utilities {
+  .animate-logo-marquee {
+    animation: logo-marquee 32s linear infinite;
+  }
+
+  .work-logos-static {
+    display: none;
+  }
+
+  .work-logos-marquee {
+    display: block;
+  }
+
+  @media (min-width: 1800px) {
+    .work-logos-static {
+      display: flex;
+    }
+
+    .work-logos-marquee {
+      display: none;
+    }
+  }
 }
 
 .dark {

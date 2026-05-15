@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { Equal, X } from 'lucide-react';
@@ -17,6 +17,7 @@ const navItems = [
 export function Navigation() {
     const [active, setActive] = useState('intro');
     const [open, setOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement | null>(null);
 
     const scrollTo = (id: string) => {
         const el = document.getElementById(id);
@@ -62,10 +63,32 @@ export function Navigation() {
         };
     }, []);
 
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setOpen(false);
+            }
+        };
+
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [open]);
+
     return (
         <>
             {/* Desktop Sidebar */}
-            <nav className="hidden md:flex flex-col w-full h-screen sticky top-0 p-6 lg:p-10 bg-muted">
+            <nav aria-label="Primary navigation" className="hidden md:flex flex-col w-full h-screen sticky top-0 p-6 lg:p-10 bg-muted">
                 <div className="mb-10 w-full">
                     <Image
                         src="/images/logo.webp"
@@ -81,6 +104,7 @@ export function Navigation() {
                     {navItems.map((item) => (
                         <li key={item.id}>
                             <button
+                                type="button"
                                 onClick={() => scrollTo(item.id)}
                                 className={clsx(
                                     'text-left transition-colors font-medium cursor-pointer text-sm lg:text-base',
@@ -105,28 +129,44 @@ export function Navigation() {
                     height={32}
                 />
 
-                <button onClick={() => setOpen(!open)}>
+                <button
+                    type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded={open}
+                    onClick={() => setOpen(!open)}
+                >
                     {open ? <X size={22} /> : <Equal size={22} />}
                 </button>
             </div>
 
             {/* Mobile Menu */}
             {open && (
-                <div className="md:hidden fixed inset-0 bg-background z-40 flex flex-col items-center justify-center space-y-6">
-                    {navItems.map((item) => (
-                        <button
-                            key={item.id}
-                            onClick={() => scrollTo(item.id)}
-                            className={clsx(
-                                'text-xl transition-colors font-medium',
-                                active === item.id
-                                    ? 'text-black'
-                                    : 'text-gray-400 hover:text-gray-700'
-                            )}
-                        >
-                            {item.label}
-                        </button>
-                    ))}
+                <div
+                    className="md:hidden fixed inset-0 bg-background z-40 flex items-center justify-center"
+                    onClick={() => setOpen(false)}
+                >
+                    <div
+                        ref={menuRef}
+                        className="flex flex-col items-center justify-center space-y-6"
+                        onClick={(event) => event.stopPropagation()}
+                    >
+                        {navItems.map((item) => (
+                            <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => scrollTo(item.id)}
+                                aria-label={`Scroll to ${item.label}`}
+                                className={clsx(
+                                    'text-xl transition-colors font-medium',
+                                    active === item.id
+                                        ? 'text-black'
+                                        : 'text-gray-400 hover:text-gray-700'
+                                )}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             )}
         </>

@@ -1,10 +1,13 @@
 'use client';
 
 import { useEffect, useMemo, useState } from "react";
+import type { ProjectSection } from "@/lib/types";
 
 type Props = {
-    sections: any[];
+    sections: ProjectSection[];
 };
+
+type SectionWithTitle = ProjectSection & { title: string };
 
 function slugify(text: string) {
     return text
@@ -19,7 +22,10 @@ export function ProjectTOC({ sections }: Props) {
     const titles = useMemo(
         () =>
             sections
-                .filter((s) => (s.type === "text" && s.title) || (s.type === "figma" && s.title))
+                .filter(
+                    (s): s is SectionWithTitle =>
+                        (s.type === "text" || s.type === "figma") && Boolean(s.title)
+                )
                 .map((s) => ({
                     id: slugify(s.title),
                     title: s.title,
@@ -49,9 +55,6 @@ export function ProjectTOC({ sections }: Props) {
         );
 
         headings.forEach((heading) => observer.observe(heading));
-
-        const initial = headings.find((heading) => heading.getBoundingClientRect().top > 0);
-        setActive(initial?.id ?? headings[0]?.id ?? "");
 
         return () => observer.disconnect();
     }, [titles]);

@@ -1,0 +1,13 @@
+name = "michela-portfolio-2026"
+type = "javascript"
+compatibility_date = "2026-05-15"
+
+[build]
+command = "pnpm run build"
+cwd = "."
+
+[assets]
+directory = "out"
+
+[env.production]
+name = "michela-portfolio-2026"
