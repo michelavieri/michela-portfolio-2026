@@ -54,16 +54,16 @@ export function ContactSection() {
         <div className="-mt-4 min-w-0 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center">
           <div className="flex items-center justify-center lg:order-last w-full min-w-0">
             <div className="relative aspect-square w-full max-w-[18rem] sm:max-w-[22rem] overflow-hidden rounded-full mx-auto">
-              <Image src="/images/profile.png" alt="Profile Picture" fill className="object-cover" />
+              <Image src="/images/profile.png" alt="Profile Picture" fill sizes="(max-width: 640px) 288px, 352px" className="object-cover" />
             </div>
           </div>
 
           <div className="space-y-16 w-full min-w-0">
             <SectionLabel label="Contact" />
 
-            <p className="text-3xl md:text-4xl leading-normal text-foreground max-w-2xl">
+            <h2 className="text-3xl md:text-4xl leading-normal text-foreground max-w-2xl">
               I&apos;m open for Product Designer Roles or Web Design & Build Commissions
-            </p>
+            </h2>
 
             <div className="flex flex-wrap gap-4 sm:flex-row sm:gap-8">
               <a
@@ -77,7 +77,8 @@ export function ContactSection() {
               <a
                 href="https://linkedin.com/in/michelavieri"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label="Open LinkedIn profile in a new tab"
                 className="inline-flex items-center gap-2 border-b pb-2 text-sm text-foreground"
               >
                 <LinkedinIcon />
@@ -87,7 +88,8 @@ export function ContactSection() {
               <a
                 href="https://www.dribbble.com/michelavieri"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label="Open Dribbble profile in a new tab"
                 className="inline-flex items-center gap-2 border-b pb-2 text-sm text-foreground"
               >
                 <DribbbleIcon />

@@ -43,6 +43,7 @@ export function ProjectCard({
                         alt={title}
                         fill
                         sizes="(max-width: 768px) 100vw, 40vw"
+                        loading="eager"
                         className="object-contain"
                     />
                 </div>
@@ -60,8 +61,10 @@ export function ProjectCard({
                     </p>
 
                     <div className="flex flex-row gap-4 mt-6 items-center">
-                        <Button className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary">
+<Button asChild className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary">
+                        <span>
                             Read <ArrowRight size={12} />
+                        </span>
                         </Button>
 
                         <p className="text-gray-400 text-xs italic">

@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects/projects";
 import ReactMarkdown from "react-markdown";
@@ -27,10 +29,58 @@ function getFigmaEmbedSrc(src: string) {
     )}`;
 }
 
+export async function generateMetadata({
+    params,
+}: {
+    params: { id: string } | Promise<{ id: string }>;
+}): Promise<Metadata> {
+    const { id } = await params;
+    const project = projects.find((project) => project.id === id);
+
+    if (!project) {
+        return {
+            title: "Project not found | Michela Vieri",
+            description: "Project not found.",
+            robots: { index: false, follow: false },
+        };
+    }
+
+    const url = `https://michelavieri.com/project/${project.id}`;
+
+    return {
+        title: `${project.title} | Michela Vieri`,
+        description: project.description,
+        openGraph: {
+            title: project.title,
+            description: project.description,
+            url,
+            type: "website",
+            images: [
+                {
+                    url: project.heroImage,
+                    alt: project.title,
+                },
+            ],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: project.title,
+            description: project.description,
+        },
+        alternates: {
+            canonical: url,
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+    };
+}
+
 export default async function ProjectPage({
     params,
 }: {
-    params: Promise<{ id: string }>;
+    params: { id: string } | Promise<{ id: string }>;
 }) {
     const { id } = await params;
 
@@ -64,12 +114,12 @@ export default async function ProjectPage({
 
                 {/* LEFT: TOC */}
                 <div className="hidden md:block sticky top-24 text-sm text-gray-500 self-start space-y-6">
-                    <a
+                    <Link
                         href="/"
                         className="text-sm text-gray-400 hover:text-black transition inline-block"
                     >
                         ← Back
-                    </a>
+                    </Link>
 
                     <ProjectTOC sections={project.sections ?? []} />
                 </div>
@@ -78,12 +128,12 @@ export default async function ProjectPage({
                 <div className="max-w-3xl mx-auto w-full">
 
                     {/* MOBILE BACK */}
-                    <a
+                    <Link
                         href="/"
                         className="md:hidden text-sm text-gray-400 hover:text-black transition inline-block mb-10"
                     >
                         ← Back
-                    </a>
+                    </Link>
 
                     {/* TITLE */}
                     <div className="mb-12">
@@ -129,6 +179,7 @@ export default async function ProjectPage({
                                             )}
 
                                             <ReactMarkdown
+                                                skipHtml={true}
                                                 components={{
                                                     p: ({ children }) => (
                                                         <p className="text-gray-700 leading-relaxed mb-4">
@@ -149,7 +200,8 @@ export default async function ProjectPage({
                                                         <a
                                                             href={href}
                                                             target="_blank"
-                                                            rel="noreferrer"
+                                                            rel="noopener noreferrer"
+                                                            aria-label={href ? `Opens ${href} in a new tab` : undefined}
                                                             className="font-medium text-gray-900 underline underline-offset-4 hover:text-gray-500 transition"
                                                         >
                                                             {children}

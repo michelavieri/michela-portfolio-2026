@@ -36,7 +36,7 @@ export function LogosSection() {
                 <SectionLabel label="Worked at" />
                 <div className="work-logos-static gap-12 pb-24 pt-6">
                     {workLogos.map((logo, index) => (
-                        <Image key={index} src={logo.src} alt={logo.alt} width={200} height={48} className="h-12 object-contain" />
+                        <Image key={index} src={logo.src} alt={logo.alt} width={200} height={48} loading="lazy" className="h-12 object-contain" />
                         ))}
                 </div>
                 <div className="work-logos-marquee relative min-w-0 w-full max-w-full overflow-hidden pb-24 pt-6">
@@ -52,8 +52,9 @@ export function LogosSection() {
                                 <Image
                                     src={logo.src}
                                     alt={logo.alt}
-                                    width={200}
-                                    height={64}
+                                    width={0}
+                                    height={0}
+                                    loading="lazy"
                                     className="max-h-12 w-auto object-contain"
                                 />
                             </div>
@@ -74,8 +75,9 @@ export function LogosSection() {
                                 <Image
                                     src={logo.src}
                                     alt={logo.alt}
-                                    width={176}
-                                    height={64}
+                                    width={0}
+                                    height={0}
+                                    loading="lazy"
                                     className="max-h-12 w-auto object-contain"
                                 />
                             </div>

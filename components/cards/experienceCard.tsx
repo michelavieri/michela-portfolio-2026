@@ -61,6 +61,8 @@ export function ExperienceCard({
                                     <a
                                         href={`https://${website}`}
                                         target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`Open ${website} in a new tab`}
                                         className="hover:text-foreground transition-colors text-muted-foreground"
                                     >
                                         {website}

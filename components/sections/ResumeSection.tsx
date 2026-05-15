@@ -29,13 +29,12 @@ export function ResumeSection() {
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <div className="flex flex-col gap-2 md:gap-8 sm:flex-row sm:items-center">
               <div className="min-w-0">
-                <p className="text-sm font-semibold text-foreground">Michela Vieri's Resume</p>
-                <p className="text-xs text-muted-foreground mt-1">PDF · 115 KB</p>
+                <p className="text-sm font-semibold text-foreground">Michela Vieri’s Resume</p>
               </div>
 
               <div className="flex-shrink-0">
                 <Button className="cursor-pointer font-medium inline-flex items-center gap-1 hover:gap-2 transition-all rounded-sm bg-muted hover:bg-secondary/10 text-secondary" asChild size="sm" variant="default">
-                  <a href="/Michela Vieri's Resume.pdf" download="Michela Vieri's Resume.pdf" className="inline-flex items-center gap-2">
+                  <a href="/michela-vieri-resume.pdf" download="michela-vieri-resume.pdf" className="inline-flex items-center gap-2">
                     Download
                     <Download size={14} />
                   </a>
