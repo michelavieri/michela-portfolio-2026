@@ -4,9 +4,9 @@ import { SectionLabel } from '@/components/common/SectionLabel';
 import { projects } from '@/data/projects/projects';
 export function WorkSection() {
     return (
-        <section id="work" className="px-0 md:px-12 pb-12">
+        <section id="portfolio" className="px-0 md:px-12 pb-12">
             <div className="w-full">
-                <SectionLabel label="Selected Works" />
+                <SectionLabel label="Portfolio / Selected Works" />
                 <div className="space-y-8">
                     {projects.map((project, index) => (
                         <ProjectCard

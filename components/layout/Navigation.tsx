@@ -7,7 +7,7 @@ import { Equal, X } from 'lucide-react';
 
 const navItems = [
     { label: 'Intro', id: 'intro' },
-    { label: 'Work', id: 'work' },
+    { label: 'Portfolio', id: 'portfolio' },
     { label: 'Experiences', id: 'experiences' },
     { label: 'Skills', id: 'skills' },
     { label: 'Resume', id: 'resume' },

@@ -13,7 +13,7 @@ export default function Home() {
       <section id="intro"><HeroSection /></section>
       <AboutSection />
       <LogosSection />
-      <section id="work"><WorkSection /></section>
+      <section id="portfolio"><WorkSection /></section>
       <section id="experiences"><ExperiencesSection /></section>
       <section id="skills"><SkillsSection /></section>
       <section id="resume"><ResumeSection /></section>

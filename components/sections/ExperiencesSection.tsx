@@ -7,7 +7,7 @@ import { SectionLabel } from "../common/SectionLabel";
 export function ExperiencesSection() {
     return (
         <div className="px-0 md:px-12 py-12">
-            <SectionLabel label="Experience" />
+            <SectionLabel label="Experiences" />
 
             <div className="max-w-4xl">
                 {experiences.map((experience, index) => (
